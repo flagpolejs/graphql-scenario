@@ -14,16 +14,8 @@ const graphql_scenario_1 = require("../../dist/graphql-scenario");
 flagpole_1.default("Star Wars GraphQL API", (suite) => __awaiter(void 0, void 0, void 0, function* () {
     suite
         .scenario("Smoke Test", graphql_scenario_1.GraphQLScenario)
-        .open("POST https://graphql.org/swapi-graphql")
-        .setJsonBody({
-        query: `query {
-  allFilms {
-    films {
-      title
-    }
-  }
-}`,
-    })
+        .open("https://graphql.org/swapi-graphql")
+        .setQuery("query { allFilms { films { title } } }")
         .next((context) => __awaiter(void 0, void 0, void 0, function* () {
         yield context.exists("data.allFilms");
     }));

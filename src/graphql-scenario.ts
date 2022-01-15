@@ -1,6 +1,7 @@
-import { iScenario, iValue, ProtoScenario } from "flagpole";
+import { iScenario, ProtoScenario } from "flagpole";
 import { KeyValue } from "flagpole/dist/interfaces/generic-types";
 import { HttpRequestOptions } from "flagpole/dist/interfaces/http";
+import { DocumentNode } from "graphql";
 import { GraphQLResponse } from "./graphql-response";
 import {
   CONTENT_TYPE_GRAPHQL,
@@ -8,7 +9,7 @@ import {
   fetchWithNeedle,
 } from "./needle-adapter";
 
-export class GraphQLScenario extends ProtoScenario {
+export class GraphQLScenario extends ProtoScenario implements iScenario {
   public readonly requestAdapter = fetchWithNeedle;
   public readonly response = new GraphQLResponse(this);
 
@@ -25,7 +26,7 @@ export class GraphQLScenario extends ProtoScenario {
     };
   }
 
-  protected updateJsonBody(): GraphQLScenario {
+  protected updateJsonBody(): this {
     this.setJsonBody({
       query: this._query,
       operationName: this._operationName,
@@ -34,22 +35,18 @@ export class GraphQLScenario extends ProtoScenario {
     return this;
   }
 
-  public open(endpointUrl: string | iValue): GraphQLScenario {
-    super.open(typeof endpointUrl == "string" ? endpointUrl : endpointUrl.$);
-    return this;
-  }
-
-  public setQuery(query: string): GraphQLScenario {
-    this._query = query;
+  public setQuery(query: DocumentNode | string): this {
+    this._query =
+      typeof query == "string" ? query : query.loc?.source.body || "";
     return this.updateJsonBody();
   }
 
-  public setVariables(variables: KeyValue): GraphQLScenario {
+  public setVariables(variables: KeyValue): this {
     this._variables = variables;
     return this.updateJsonBody();
   }
 
-  public setOperationName(name: string): GraphQLScenario {
+  public setOperationName(name: string): this {
     this._operationName = name;
     return this.updateJsonBody();
   }

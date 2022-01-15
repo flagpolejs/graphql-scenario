@@ -1,6 +1,6 @@
 {
-  "name": "graphql-scenario",
-  "version": "1.0.0",
+  "name": "@flagpolejs/graphql-scenario",
+  "version": "1.0.1",
   "description": "Flagpole Add-On for GraphQL Testing",
   "files": [
     "dist/",
@@ -41,6 +41,8 @@
     "typescript": "^4.5.4"
   },
   "dependencies": {
-    "flagpole": "^3.0.3"
+    "flagpole": "^3.0.4",
+    "graphql": "^16.2.0",
+    "graphql-tag": "^2.12.6"
   }
 }
