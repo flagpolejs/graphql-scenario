@@ -1,6 +1,5 @@
 import flagpole from "flagpole";
-import gql from "graphql-tag";
-import GraphQLScenario from "../../dist";
+import GraphQLScenario, { gql } from "../../dist";
 
 flagpole("SpaceX GraphQL API", async (suite) => {
   suite

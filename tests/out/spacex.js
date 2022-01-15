@@ -10,13 +10,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const flagpole_1 = require("flagpole");
-const graphql_tag_1 = require("graphql-tag");
 const dist_1 = require("../../dist");
 flagpole_1.default("SpaceX GraphQL API", (suite) => __awaiter(void 0, void 0, void 0, function* () {
     suite
         .scenario("Get Last 10 Launches", dist_1.default)
         .open("https://api.spacex.land/graphql")
-        .setQuery(graphql_tag_1.default `
+        .setQuery(dist_1.gql `
         query {
           launchesPast(limit: 10) {
             mission_name
