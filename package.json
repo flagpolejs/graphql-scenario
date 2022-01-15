@@ -7,6 +7,9 @@
     "README.md"
   ],
   "main": "./dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clean": "rimraf dist/",
     "copy-files": "copyfiles -u 1 dist/",
