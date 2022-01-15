@@ -4,7 +4,7 @@ Flagpole Add-On for GraphQL Testing
 
 ```typescript
 import flagpole from "flagpole";
-import { GraphQLScenario } from "graphql-scenario";
+import { GraphQLScenario } from "@flagpolejs/graphql-scenario";
 
 flagpole("SpaceX GraphQL API", async (suite) => {
   suite
